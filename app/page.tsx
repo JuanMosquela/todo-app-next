@@ -1,8 +1,7 @@
-// import { prisma } from "@/db";
 import { TodoItem } from "@/components/TodoItem";
 import Link from "next/link";
 
-export const fetchAllTodos = async () => {
+const fetchAllTodos = async () => {
   const res = await fetch(`http://localhost:3000/api/todos`, {
     cache: "no-store",
   });
