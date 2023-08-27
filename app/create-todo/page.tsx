@@ -11,7 +11,6 @@ async function createTodo(data: FormData) {
     throw new Error("Invalid Title");
   }
   await new Todo({ title }).save();
-
   redirect("/");
 }
 

@@ -1,6 +1,20 @@
-import { fetchAllTodos } from "@/actions/actions";
 import { TodoItem } from "@/components/TodoItem";
+import { BASE_URL } from "@/utils/url";
 import Link from "next/link";
+
+export const dynamic = "force-dynamic";
+
+const fetchAllTodos = async () => {
+  const res = await fetch(`${BASE_URL}/api/todos`, {
+    cache: "no-store",
+  });
+  if (!res.ok) {
+    console.log("Error while fetching Todos");
+  }
+  return await res.json();
+};
+
+export const revalidate = 0;
 
 export default async function Home() {
   const { data } = await fetchAllTodos();
