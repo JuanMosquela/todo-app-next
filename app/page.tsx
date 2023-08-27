@@ -1,15 +1,6 @@
+import { fetchAllTodos } from "@/actions/actions";
 import { TodoItem } from "@/components/TodoItem";
 import Link from "next/link";
-
-const fetchAllTodos = async () => {
-  const res = await fetch(`http://localhost:3000/api/todos`, {
-    cache: "no-store",
-  });
-  if (!res.ok) {
-    console.log("Error while fetching Todos");
-  }
-  return await res.json();
-};
 
 export default async function Home() {
   const { data } = await fetchAllTodos();
