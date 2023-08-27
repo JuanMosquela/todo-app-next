@@ -3,7 +3,7 @@ import { TodoItem } from "@/components/TodoItem";
 import Link from "next/link";
 
 export default async function Home() {
-  // const { data } = await fetchAllTodos();
+  const { data } = await fetchAllTodos();
 
   return (
     <>
@@ -16,7 +16,7 @@ export default async function Home() {
           Create Todo
         </Link>
       </header>
-      {/* <ul className="pl-4">
+      <ul className="pl-4">
         {data.length > 0 &&
           data?.map((todo: any) => (
             <TodoItem
@@ -26,7 +26,7 @@ export default async function Home() {
               completed={todo.completed}
             />
           ))}
-      </ul> */}
+      </ul>
     </>
   );
 }
