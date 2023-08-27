@@ -1,5 +1,7 @@
+import { BASE_URL } from "@/utils/url";
+
 export const fetchAllTodos = async () => {
-  const res = await fetch(`http://127.0.0.1/api/todos`, {
+  const res = await fetch(`${BASE_URL}/api/todos`, {
     cache: "no-store",
   });
   if (!res.ok) {
