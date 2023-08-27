@@ -2,10 +2,12 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import Todo from "@/models/todo";
 import { connectToDB } from "@/utils/db";
+import { revalidatePath } from "next/cache";
 
 async function createTodo(data: FormData) {
   "use server";
   connectToDB();
+  revalidatePath("/");
   const title = data.get("title")?.valueOf();
   if (typeof title !== "string" || title.length === 0) {
     throw new Error("Invalid Title");
