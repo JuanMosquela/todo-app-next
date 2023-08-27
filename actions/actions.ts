@@ -1,5 +1,5 @@
 export const fetchAllTodos = async () => {
-  const res = await fetch(`http://localhost:3000/api/todos`, {
+  const res = await fetch(`http://127.0.0.1/api/todos`, {
     cache: "no-store",
   });
   if (!res.ok) {
