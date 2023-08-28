@@ -1,6 +1,7 @@
 import { createTodo } from "@/actions/serverActions";
 import SubmitButton from "@/components/SubmitButton";
 import { TodoItem } from "@/components/TodoItem";
+import TodoList from "@/components/TodoList";
 import { BASE_URL } from "@/utils/url";
 import Link from "next/link";
 
@@ -17,6 +18,8 @@ const fetchAllTodos = async () => {
 export default async function Home() {
   const { data } = await fetchAllTodos();
 
+  console.log(data);
+
   return (
     <>
       <header className="flex justify-between items-center mb-4">
@@ -28,26 +31,8 @@ export default async function Home() {
           Create Todo
         </Link>
       </header>
-      <form action={createTodo}>
-        <input
-          type="text"
-          name="title"
-          placeholder="Create a new todo"
-          autoFocus={true}
-        />
-        <SubmitButton />
-      </form>
-      <ul className="pl-4 flex flex-col gap-2">
-        {data.length > 0 &&
-          data?.map((todo: any) => (
-            <TodoItem
-              key={todo._id}
-              id={todo._id}
-              title={todo.title}
-              completed={todo.completed}
-            />
-          ))}
-      </ul>
+
+      <TodoList data={data} />
     </>
   );
 }

@@ -5,12 +5,9 @@ import { connectToDB } from "@/utils/db";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-export async function createTodo(data: FormData) {
+export async function createTodo(title: string) {
   connectToDB();
-  const title = data.get("title")?.valueOf();
-  if (typeof title !== "string" || title.length === 0) {
-    throw new Error("Invalid Title");
-  }
+
   await new Todo({ title }).save();
   revalidatePath("/");
   redirect("/");
