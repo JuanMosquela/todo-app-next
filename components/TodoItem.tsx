@@ -1,6 +1,7 @@
 "use client";
 
 import { toggleCheckbox } from "@/actions/serverActions";
+import { BASE_URL } from "@/utils/url";
 import Link from "next/link";
 import { useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
@@ -50,4 +51,14 @@ export function TodoItem({ id, title, completed }: TodoItemProps) {
       </Link>
     </li>
   );
+}
+
+export async function generateSaticParams() {
+  const res = await fetch(`${BASE_URL}/api/todos/`);
+
+  const todos = await res.json();
+
+  return todos.map((todo: TodoItemProps) => ({
+    id: todo.id.toString(),
+  }));
 }
