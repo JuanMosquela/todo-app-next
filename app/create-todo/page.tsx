@@ -8,7 +8,17 @@ export default function Page() {
       <header className="flex justify-between items-center mb-4">
         <h1 className="text-2xl text-white">New</h1>
       </header>
-      <form action={createTodo} className="flex gap-2 flex-col">
+      <form
+        action={async (formData: FormData) => {
+          const title = formData.get("title");
+          if (typeof title !== "string" || title.length === 0) {
+            throw new Error("Invalid Title");
+          }
+
+          await createTodo(title);
+        }}
+        className="flex gap-2 flex-col"
+      >
         <input
           autoFocus={true}
           type="text"
