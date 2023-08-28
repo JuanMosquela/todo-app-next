@@ -1,5 +1,8 @@
 import Todo from "@/models/todo";
+import { connectToDB } from "@/utils/db";
 import { NextRequest, NextResponse } from "next/server";
+
+connectToDB();
 
 export async function GET(request: NextRequest, { params }: any) {
   const { id } = params;
