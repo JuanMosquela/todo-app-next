@@ -53,7 +53,7 @@ export function TodoItem({ id, title, completed }: TodoItemProps) {
   );
 }
 
-export async function generateSaticParams() {
+export async function generateStaticParams() {
   const res = await fetch(`${BASE_URL}/api/todos/`);
 
   const todos = await res.json();
