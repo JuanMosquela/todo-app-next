@@ -1,3 +1,5 @@
+import { createTodo } from "@/actions/serverActions";
+import SubmitButton from "@/components/SubmitButton";
 import { TodoItem } from "@/components/TodoItem";
 import { BASE_URL } from "@/utils/url";
 import Link from "next/link";
@@ -26,7 +28,16 @@ export default async function Home() {
           Create Todo
         </Link>
       </header>
-      <ul className="pl-4">
+      <form action={createTodo}>
+        <input
+          type="text"
+          name="title"
+          placeholder="Create a new todo"
+          autoFocus={true}
+        />
+        <SubmitButton />
+      </form>
+      <ul className="pl-4 flex flex-col gap-2">
         {data.length > 0 &&
           data?.map((todo: any) => (
             <TodoItem

@@ -1,20 +1,6 @@
-import { redirect } from "next/navigation";
 import Link from "next/link";
-import Todo from "@/models/todo";
-import { connectToDB } from "@/utils/db";
-import { revalidatePath } from "next/cache";
-
-async function createTodo(data: FormData) {
-  "use server";
-  connectToDB();
-  const title = data.get("title")?.valueOf();
-  if (typeof title !== "string" || title.length === 0) {
-    throw new Error("Invalid Title");
-  }
-  await new Todo({ title }).save();
-  revalidatePath("/");
-  redirect("/");
-}
+import { createTodo } from "@/actions/serverActions";
+import SubmitButton from "@/components/SubmitButton";
 
 export default function Page() {
   return (
@@ -36,12 +22,7 @@ export default function Page() {
           >
             Cancel
           </Link>
-          <button
-            type="submit"
-            className="border border-slate-300 text-slate-300 px-2 py-1 rounded hover:bg-slate-700 focus-within:bg-slate-700 outline-none"
-          >
-            Create
-          </button>
+          <SubmitButton />
         </div>
       </form>
     </section>
